@@ -14,6 +14,8 @@ export const GlobalStyles = createGlobalStyle`
     --notification-error: #FC6258;
     --notification-warning: #FEBE07;
     --notification-success: #16CC39;
+
+    font-size: 60%;
   }
 
   * {

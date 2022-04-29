@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRef } from "react";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/Form/Input";
 
 import { Container, Box, Title, FormControl, Info } from "../../styles/pages/Auth";
 
@@ -9,7 +9,7 @@ export default function Auth() {
   const formRefAuth = useRef();
 
   const handleFormSubmit = data => {
-    console.log(data)
+    console.log(data);
   }
 
   return (
@@ -34,7 +34,7 @@ export default function Auth() {
             <Input type="email" name="email" placeholder="Endereço de e-mail" />
             <Input type="password" name="password" placeholder="Digite sua senha" />
             <button type="submit">
-              Sign In
+              Entrar
             </button>
           </FormControl>
         </Box>

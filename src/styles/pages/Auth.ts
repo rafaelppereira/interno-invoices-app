@@ -11,7 +11,7 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
 
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 export const Box = styled.div`
