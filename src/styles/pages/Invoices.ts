@@ -39,7 +39,7 @@ export const CreatedName = styled.div`
     opacity: 0.7;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

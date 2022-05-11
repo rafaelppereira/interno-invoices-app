@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { RiTimeLine, RiExternalLinkLine, RiDeleteBin7Line } from 'react-icons/ri';
+import { RiTimeLine, RiExternalLinkLine, RiDeleteBin7Line, RiShareFill } from 'react-icons/ri';
 import { 
   CardInvoiceContainer, 
   Profile, 
@@ -16,7 +16,10 @@ interface CardInvoiceProps {
   moneyValue: string;
   collaborator: string;
   createdAt: string;
+  email: string;
+  tel: string;
   onRemoveInvoiceList: (id) => void;
+  onRedirectToSharedPage: (tel, client, id, createdAt, email) => void;
 }
 
 export function CardInvoice({
@@ -26,7 +29,10 @@ export function CardInvoice({
   moneyValue,
   collaborator,
   createdAt,
-  onRemoveInvoiceList
+  email,
+  tel,
+  onRemoveInvoiceList,
+  onRedirectToSharedPage
 }: CardInvoiceProps) {
   const firstLetter = client.substring(0, 1);
 
@@ -54,6 +60,12 @@ export function CardInvoice({
         <div>
           <span>R$ {moneyValue}</span>
         </div>
+        <button
+          type="button"
+          onClick={() => onRedirectToSharedPage(tel, client, id, createdAt, email)}
+        >
+          <RiShareFill />Compartilhar
+        </button>
       </Info>
 
       <Redirect>

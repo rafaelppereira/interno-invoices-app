@@ -5,6 +5,8 @@ interface DataInvoiceProps {
   maxDueDate: string;
   collaborator: string;
   description?: string;
+  email: string;
+  tel: string;
 }
 
 interface ClientProps {

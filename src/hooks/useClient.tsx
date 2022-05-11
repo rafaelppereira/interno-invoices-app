@@ -17,6 +17,8 @@ export function useClient() {
         return {
           id: key,
           name: value.name,
+          email: value.email,
+          tel: value.tel
         }
       });
       setClientList(dataClients);
@@ -32,7 +34,7 @@ export function useClient() {
       const dataCollaborator = Object.entries(collaborator).map(([key, value]) => {
         return {
           id: key,
-          name: value.name,
+          name: value.name
         }
       });
       setCollaboratorList(dataCollaborator);

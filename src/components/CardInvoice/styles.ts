@@ -71,6 +71,30 @@ export const Info = styled.div`
     color: var(--alpha-primary);
     font-size: 1.8rem;
   }
+
+  button {
+    background-color: var(--alpha-primary);
+    color: var(--white-100);
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.4rem;
+
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    transition: filter 0.2s;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
 `;
 
 export const Redirect = styled.div`

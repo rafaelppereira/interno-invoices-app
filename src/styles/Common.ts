@@ -40,4 +40,8 @@ export const Grid = styled.div`
   gap: 35px 20px;
 
   width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;

@@ -19,7 +19,9 @@ export function useInvoice() {
           createdAt: value.createdAt,
           maxDueDate: value.maxDueDate,
           moneyValue: value.moneyValue,
-          description: value.description
+          description: value.description,
+          email: value.email,
+          tel: value.tel
         }
       });
 

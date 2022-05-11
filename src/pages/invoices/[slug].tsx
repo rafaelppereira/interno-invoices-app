@@ -43,7 +43,7 @@ export default function InvoicePage({ slug }) {
   return (
     <>
       <Head>
-        <title>Fatura da {dataClient.client} | Alpha desenvolvimento</title>
+        <title>Você tem uma fatura em aberto | Alpha desenvolvimento</title>
       </Head>
 
       <MainContent>

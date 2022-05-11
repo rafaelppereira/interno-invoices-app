@@ -33,6 +33,10 @@ export default function CreateInvoice() {
           .required('Preencha o campo da data máxima de vencimento'),
         collaborator: Yup.string()
           .required('Selecione um colaborador para essa fatura'),
+        tel: Yup.string()
+          .required('Selecione um telefone para essa fatura'),
+        email: Yup.string()
+          .required('Selecione um email para essa fatura'),
       });
 
       await schema.validate(data, {
@@ -48,7 +52,9 @@ export default function CreateInvoice() {
         data.moneyValue,
         data.collaborator,
         dateCurrent.toString(),
-        data.description
+        data.description,
+        data.email,
+        data.tel
       );
       reset();
       toast.success('Fatura adicionada com sucesso 🚀');
@@ -82,6 +88,21 @@ export default function CreateInvoice() {
               <Input type="date" name="maxDueDate" label="Vencimento máximo" />
               <Input type="text" name="description" label="Observação" />
               <Input type="text" name="id" value={generateIdInvoice} label="Identificação da fatura" disabled />
+            </fieldset>
+            <fieldset>
+              <Title title="Dados do cliente" />
+              <Select name="tel" label="Telefone">
+                <option value="" disabled selected>Selecione um telefone</option>
+                {clientList.map(item => (
+                  <option key={item.id} value={item.tel}> {item.name}: {item.tel}</option>
+                ))}
+              </Select>
+              <Select name="email" label="Endereço de e-mail">
+                <option value="" disabled selected>Selecione um telefone</option>
+                {clientList.map(item => (
+                  <option key={item.id} value={item.email}> {item.name}: {item.email}</option>
+                ))}
+              </Select>
             </fieldset>
             <fieldset>
               <Title title="Dados de cadastrante" />

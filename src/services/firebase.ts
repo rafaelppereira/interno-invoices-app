@@ -25,6 +25,8 @@ export function addNewInvoice(
   collaborator: string,
   createdAt: string, 
   description: string,
+  email: string,
+  tel: string
 ) {
   
   set(ref(database, 'invoices/' + id), {
@@ -33,7 +35,9 @@ export function addNewInvoice(
     moneyValue,
     collaborator,
     createdAt,
-    description
+    description,
+    email,
+    tel
   });
 }
 
