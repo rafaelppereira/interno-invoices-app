@@ -13,10 +13,21 @@ interface InputProps {
 }
 
 export function Input({ name, placeholder, label, value, ...rest }: InputProps) {
+  const inputRef = useRef(null);
+  const { fieldName, registerField } = useField(name);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef.current,
+      path: 'value'
+    })
+  }, [fieldName, registerField])
+  
   return (
     <>
       <Label>{label}</Label>
-      <Container placeholder={placeholder} value={value} {...rest} />
+      <Container ref={inputRef} placeholder={placeholder} value={value} {...rest} />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { Form } from "@unform/web";
 import Head from "next/head";
 import Image from "next/image";
 import { useRef } from "react";
@@ -20,23 +21,25 @@ export default function Auth() {
 
       <Container>
         <Image
-          src="/logo.png"
+          src="/logo.svg"
           alt="Alpha desenvolvimento"
-          width={82}
-          height={82}
+          width={80}
+          height={80}
         />
         <Box>
           <Title>
             <h2>Sistema Alpha</h2>
             <p>Entre com suas credenciais para acessar</p>
           </Title>
-          <FormControl ref={formRefAuth} onSubmit={handleFormSubmit}>
-            <Input type="email" name="email" placeholder="Endereço de e-mail" />
-            <Input type="password" name="password" placeholder="Digite sua senha" />
-            <button type="submit">
-              Entrar
-            </button>
-          </FormControl>
+          <Form ref={formRefAuth} onSubmit={handleFormSubmit}>
+            <FormControl>
+              <Input type="email" name="email" placeholder="Endereço de e-mail" />
+              <Input type="password" name="password" placeholder="Digite sua senha" />
+              <button type="submit">
+                Entrar
+              </button>
+            </FormControl>
+          </Form>
         </Box>
         <Info>
           <h3>Criado e licenciado por <span>Alpha desenvolvimento</span></h3>

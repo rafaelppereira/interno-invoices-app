@@ -36,14 +36,14 @@ export const Title = styled.div`
   text-align: center;
 
   h2 {
-    font-size: 2.4rem;
+    font-size: 3.9rem;
     font-weight: 500;
     
     color: var(--alpha-secondary);
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: 2rem;
     font-weight: 300;
 
     color: var(--gray-300);
@@ -52,7 +52,7 @@ export const Title = styled.div`
   }
 `;
 
-export const FormControl = styled.form`
+export const FormControl = styled.div`
   margin-top: 2rem;
 
   button {
@@ -66,6 +66,8 @@ export const FormControl = styled.form`
     border-radius: 10rem;
 
     transition: filter 0.2s;
+
+    font-size: 1.9rem;
 
     &:hover {
       filter: brightness(0.9);

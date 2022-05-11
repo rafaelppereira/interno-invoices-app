@@ -5,7 +5,7 @@ export default function Home() {
 export const getServerSideProps = () => {
   return {
     redirect: {
-      destination: '/app/auth',
+      destination: '/dashboard',
       permanent: true,
     }
   }
