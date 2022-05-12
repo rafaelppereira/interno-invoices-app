@@ -76,7 +76,7 @@ export const FormControl = styled.div`
 `;
 
 export const Info = styled.div`
-  font-size: 0.7rem;
+  font-size: 1rem;
 
   text-align: center;
   margin: 1.8rem 0;

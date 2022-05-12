@@ -1,16 +1,51 @@
-import { Form } from "@unform/web";
 import Head from "next/head";
 import Image from "next/image";
 import { useRef } from "react";
-import { Input } from "../../components/Form/Input";
 
-import { Container, Box, Title, FormControl, Info } from "../../styles/pages/Auth";
+import * as Yup from 'yup';
+import { Form } from "@unform/web";
+import { toast } from "react-toastify";
+
+import { Input } from "../../components/Form/Input";
+import { signInMethod } from "../../services/firebase";
+
+import { 
+  Container, 
+  Box, 
+  Title, 
+  FormControl, 
+  Info
+} from "../../styles/pages/Auth";
 
 export default function Auth() {
   const formRefAuth = useRef();
 
-  const handleFormSubmit = data => {
-    console.log(data);
+  async function handleSignInWithEmailAndPassword(data, { reset }) {
+    try {
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .email('Digite um e-mail válido')
+          .required('Preencha o campo de e-mail'),
+        password: Yup.string()
+          .min(4, 'A senha precisa ter no mínimo 3 caracteres')
+          .required('Preencha o campo de senha')
+      })
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      signInMethod(data.email, data.password);
+
+      reset();
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach(error => {
+          const errors = error.message;
+          toast.error(errors);
+        })
+      }
+    }
   }
 
   return (
@@ -31,7 +66,7 @@ export default function Auth() {
             <h2>Sistema Alpha</h2>
             <p>Entre com suas credenciais para acessar</p>
           </Title>
-          <Form ref={formRefAuth} onSubmit={handleFormSubmit}>
+          <Form ref={formRefAuth} onSubmit={handleSignInWithEmailAndPassword}>
             <FormControl>
               <Input type="email" name="email" placeholder="Endereço de e-mail" />
               <Input type="password" name="password" placeholder="Digite sua senha" />
@@ -48,4 +83,21 @@ export default function Auth() {
       </Container>
     </>
   );
+}
+
+export const getServerSideProps = async ({ req }) => {
+  const { token } = req.cookies;
+
+  if (token) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: true,
+      }
+    }
+  }
+
+  return {
+    props: {}
+  };
 }

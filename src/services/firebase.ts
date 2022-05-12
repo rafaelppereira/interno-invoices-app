@@ -1,8 +1,13 @@
+import router from "next/router";
+
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, remove, set } from 'firebase/database';
-import { toast } from "react-toastify";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
+import Cookie from 'js-cookie';
+import { addDays } from "date-fns";
 import { v4 as createId } from 'uuid';
+import { toast } from "react-toastify";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -15,7 +20,23 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 export const database = getDatabase(app);
+
+export function signInMethod(email: string, password: string) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredencial) => {
+      const { uid } = userCredencial.user;
+
+      Cookie.set('token', uid, {
+        expires: addDays(new Date, 2)
+      });
+
+      router.push('/dashboard');
+    }).catch(() => {
+      toast.error('E-mail e/ou senha incorretas');
+    })
+}
 
 export function addNewInvoice(
   id: string,

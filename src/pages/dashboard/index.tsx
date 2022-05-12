@@ -62,3 +62,20 @@ export default function Dashboard() {
     </>
   );
 }
+
+export const getServerSideProps = async ({ req }) => {
+  const { token } = req.cookies;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: true,
+      }
+    }
+  }
+
+  return {
+    props: {}
+  };
+}
